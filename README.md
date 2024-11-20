@@ -1,4 +1,4 @@
-# MazeQuest: Pathfinding AI
+# ⚙️MazeQuest: Pathfinding AI
 
 **MazeQuest** is a Python-based project that generates random mazes and implements pathfinding algorithms to find the shortest path from a start point to a target point. The project is designed to showcase the power of search algorithms in navigating mazes and solving pathfinding problems.
 
