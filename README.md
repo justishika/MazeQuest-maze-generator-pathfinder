@@ -81,7 +81,7 @@ A stunning full-stack web application that generates unique AI-enhanced mazes an
 
 🎥 Demo Preview
 
-![MazeQuest AI Demo](https://github.com/user-attachments/assets/a89a66f3-05c5-4ac3-a1b1-8aa8b3a0c8ac)
+![MazeQuest AI Demo](![Image](https://github.com/user-attachments/assets/660efcfc-ec62-4e05-83a6-4efec23e05c7))
 
 
 1. **Generate a Maze**: Click "Generate AI Maze" to create a unique maze using AI
