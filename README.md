@@ -79,6 +79,12 @@ A stunning full-stack web application that generates unique AI-enhanced mazes an
 
 ## 🎮 How to Use
 
+🎥 Demo Video
+
+<video src="demo-video.mp4" controls autoplay loop muted playsinline width="100%" style="border-radius: 12px;">
+  Your browser does not support the video tag.
+</video>
+
 1. **Generate a Maze**: Click "Generate AI Maze" to create a unique maze using AI
 2. **Set Start/End Positions**: 
    - Click "Set Start" then click any path cell to set start position (cyan)

@@ -37,7 +37,7 @@ const Footer = () => {
           >
             <Heart className="w-4 h-4 text-red-500 fill-current" />
           </motion.div>
-          <span>for Alorithms entusiasts</span>
+          <span>for Algorithms' enthusiasts</span>
         </motion.div>
 
         <motion.div
