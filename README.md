@@ -13,7 +13,6 @@ A stunning full-stack web application that generates unique AI-enhanced mazes an
 
 - **🤖 AI-Enhanced Maze Generation**: Uses PyTorch neural networks to create unique, complex mazes
 - **🎯 Multiple Pathfinding Algorithms**: BFS, DFS, A*, Dijkstra, and Q-Learning
-- **🎨 Futuristic UI**: Dark theme with neon accents, glassmorphism effects, and smooth animations
 - **⚡ Real-time Visualization**: Watch algorithms solve mazes with cinematic animations
 - **🎛️ Interactive Controls**: Adjustable animation speed and algorithm selection
 - **📱 Responsive Design**: Works on desktop and tablet devices
@@ -233,7 +232,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ for AI enthusiasts and maze lovers!**
+**Made with ❤️ for Algorithm enthusiasts and maze lovers!**
 
 *Experience the future of interactive maze visualization with AI-powered generation and real-time pathfinding algorithms.*
 
