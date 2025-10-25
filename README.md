@@ -81,7 +81,7 @@ A stunning full-stack web application that generates unique AI-enhanced mazes an
 
 🎥 Demo Preview
 
-![MazeQuest AI Demo](![Image](https://github.com/user-attachments/assets/660efcfc-ec62-4e05-83a6-4efec23e05c7))
+![Image](https://github.com/user-attachments/assets/b3970f29-23b5-4d97-86d0-c77f5dabdffc)
 
 
 1. **Generate a Maze**: Click "Generate AI Maze" to create a unique maze using AI
@@ -230,7 +230,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🙏 Acknowledgments
 
 - **PyTorch Team** for the amazing ML framework
-- **Vercel** for Next.js and deployment platform
 - **FastAPI** for the high-performance web framework
 - **Framer Motion** for smooth animations
 - **TailwindCSS** for the utility-first CSS framework
