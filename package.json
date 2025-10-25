@@ -3,12 +3,25 @@
   "version": "1.0.0",
   "description": "AI-Powered Maze Generator and Pathfinding Visualizer",
   "scripts": {
+    "start": "node start.js",
+    "dev": "concurrently \"cd backend && uvicorn app.main:app --reload\" \"cd frontend && npm run dev\"",
+    "install-all": "cd backend && pip install -r requirements.txt && cd ../frontend && npm install",
     "build": "cd frontend && npm run build",
-    "dev": "cd frontend && npm run dev",
-    "start": "cd frontend && npm start",
-    "install-deps": "cd frontend && npm install"
+    "backend": "cd backend && uvicorn app.main:app --reload",
+    "frontend": "cd frontend && npm run dev"
   },
-  "keywords": ["maze", "ai", "pathfinding", "visualization", "nextjs"],
+  "keywords": [
+    "ai",
+    "maze",
+    "pathfinding",
+    "pytorch",
+    "nextjs",
+    "fastapi",
+    "visualization"
+  ],
   "author": "MazeQuest AI Team",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
