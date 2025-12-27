@@ -45,14 +45,7 @@ Frontend (Next.js) ↔ HTTP APIs ↔ Backend (FastAPI)
 - Frontend animates algorithm states using step-wise updates returned by the backend.
 - Backend generates mazes, runs pathfinding algorithms, and returns intermediate states for visualization.
 
-###ASCII Diagram
-```
-            ┌──────────────┐        HTTP APIs        ┌──────────────┐
-            │  Frontend    │  ───────────────────▶  │   Backend    │
-            │  (Next.js)   │                        │  (FastAPI)   │
-            │              │  ◀───────────────────  │              │
-            └──────────────┘     Algorithm Steps     └──────────────┘
-```
+---
 
 ## Tech Stack
 
