@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package maze;
+
+service MazeService {
+  rpc SolveMaze (MazeRequest) returns (MazeResponse);
+}
+
+message MazeRequest {
+  repeated int32 maze = 1;
+  int32 rows = 2;
+  int32 cols = 3;
+  int32 start = 4;
+  int32 end = 5;
+}
+
+message MazeResponse {
+  repeated int32 path = 1;
+}
