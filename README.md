@@ -1,253 +1,231 @@
-# 🧠 MazeQuest AI
+# 🧠 MazeQuest AI - Real-Time Pathfinding Visualizer
 
-**AI-Powered Maze Generator and Pathfinding Visualizer**
+MazeQuest AI is a full-stack web application that visualizes classic and AI-based pathfinding algorithms in real time. The project focuses on clean backend design, deterministic algorithm execution, and smooth real-time rendering rather than just UI polish.
 
-A stunning full-stack web application that generates unique AI-enhanced mazes and visualizes various pathfinding algorithms in real-time. Built with Next.js, FastAPI, PyTorch, and Framer Motion.
+Built with Next.js, FastAPI, and PyTorch, MazeQuest demonstrates how algorithmic systems can be exposed through HTTP APIs and visualized interactively without performance bottlenecks.
 
-![MazeQuest AI](https://img.shields.io/badge/MazeQuest-AI-blue?style=for-the-badge&logo=brain)
-![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.104-green?style=for-the-badge&logo=fastapi)
-![PyTorch](https://img.shields.io/badge/PyTorch-2.1-orange?style=for-the-badge&logo=pytorch)
+---
 
-## ✨ Features
+## Table of Contents
 
-- **🤖 AI-Enhanced Maze Generation**: Uses PyTorch neural networks to create unique, complex mazes
-- **🎯 Multiple Pathfinding Algorithms**: BFS, DFS, A*, Dijkstra, and Q-Learning
-- **⚡ Real-time Visualization**: Watch algorithms solve mazes with cinematic animations
-- **🎛️ Interactive Controls**: Adjustable animation speed and algorithm selection
-- **📱 Responsive Design**: Works on desktop and tablet devices
+- [Features](#features)
+- [System Architecture](#system-architecture)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Backend Setup](#backend-setup)
+  - [Frontend Setup](#frontend-setup)
+  - [Run both services](#run-both-services)
+- [API](#api)
+- [Usage](#usage)
+- [Algorithms Implemented](#algorithms-implemented)
+- [Project Structure](#project-structure)
+- [Design Notes & Trade-offs](#design-notes--trade-offs)
+- [Future Improvements](#future-improvements)
+- [Contributing](#contributing)
+- [License](#license)
+- [Author](#author)
 
-## 🚀 Quick Start
+---
+
+## Features
+
+- Step-by-step visualization of pathfinding algorithms (not just final states)
+- Smooth front-end animations (target ≈50 FPS)
+- Deterministic pathfinding execution (separated from rendering)
+- Classical and AI-assisted maze generation (PyTorch)
+- Interactive controls: choose algorithm, adjust speed, set start/end, regenerate/reset
+
+---
+
+## System Architecture
+
+Frontend (Next.js) ↔ HTTP APIs ↔ Backend (FastAPI)
+
+- Frontend animates algorithm states using step-wise updates returned by the backend.
+- Backend generates mazes, runs pathfinding algorithms, and returns intermediate states for visualization.
+
+ASCII diagram:
+
+┌──────────────┐        HTTP APIs        ┌──────────────┐  
+│  Frontend    │  ───────────────────▶  │   Backend    │  
+│  (Next.js)   │                        │  (FastAPI)   │  
+│              │  ◀───────────────────  │              │  
+└──────────────┘     Algorithm Steps     └──────────────┘
+
+---
+
+## Tech Stack
+
+- Frontend: Next.js, React, Tailwind CSS, Framer Motion, Axios
+- Backend: FastAPI, Python, PyTorch (maze generation), Uvicorn
+- Language composition in repo: JavaScript, CSS, Python
+
+---
+
+## Getting Started
 
 ### Prerequisites
 
-- **Node.js** 18+ and npm
-- **Python** 3.8+
-- **pip** (Python package manager)
+- Node.js 18+ and npm
+- Python 3.8+
+- (Optional) Virtual environment tool (venv)
+- (Optional) GPU + CUDA if you want to run PyTorch on GPU for AI generator (not required)
 
 ### Backend Setup
 
-1. **Navigate to backend directory:**
-   ```bash
-   cd backend
-   ```
+1. Open a terminal:
+2. Change into backend directory:
+   - cd backend
+3. Create and activate virtual environment:
+   - Unix / macOS:
+     - python -m venv venv
+     - source venv/bin/activate
+   - Windows (PowerShell):
+     - python -m venv venv
+     - .\venv\Scripts\Activate.ps1
+   - Windows (cmd):
+     - venv\Scripts\activate
+4. Install dependencies:
+   - pip install -r requirements.txt
+5. Run the backend (development):
+   - uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-2. **Create virtual environment:**
-   ```bash
-   python -m venv venv
-   ```
+Backend will be available at:
+http://localhost:8000
 
-3. **Activate virtual environment:**
-   ```bash
-   # Windows
-   venv\Scripts\activate
-   
-   # macOS/Linux
-   source venv/bin/activate
-   ```
-
-4. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Start the FastAPI server:**
-   ```bash
-   uvicorn app.main:app --reload
-   ```
-
-   The backend will be available at `http://localhost:8000`
+Notes:
+- If you use a GPU and want PyTorch to use it, ensure the appropriate torch build is installed.
+- The AI maze generator is optional; classical generators are available as fallback.
 
 ### Frontend Setup
 
-1. **Navigate to frontend directory:**
-   ```bash
-   cd frontend
-   ```
+1. Open a separate terminal:
+2. Change into frontend directory:
+   - cd frontend
+3. Install dependencies:
+   - npm install
+4. Run the dev server:
+   - npm run dev
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+Frontend will be available at:
+http://localhost:3000
 
-3. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
+### Run both services
 
-   The frontend will be available at `http://localhost:3000`
+Start the backend first (port 8000), then start the frontend (port 3000). The frontend calls the backend endpoints to generate mazes and run algorithms.
 
-## 🎮 How to Use
+---
 
-🎥 Demo Preview
+## API
 
-![Image](https://github.com/user-attachments/assets/0d0d9a07-52e7-42fd-88a5-f92a5802cf19)
+Generate Maze
+- GET /api/generate-maze
 
-
-🎬 [Watch Demo Video](demo-video.mp4)
-
-
-1. **Generate a Maze**: Click "Generate AI Maze" to create a unique maze using AI
-2. **Set Start/End Positions**: 
-   - Click "Set Start" then click any path cell to set start position (cyan)
-   - Click "Set End" then click any path cell to set end position (magenta)
-   - Use "Clear" to reset positions
-3. **Pan & Zoom**: 
-   - Mouse wheel: Zoom in/out
-   - Click and drag: Pan around the maze
-   - Maze maintains fixed 600x600px size
-4. **Select Algorithm**: Choose from BFS, DFS, A*, Dijkstra, or Q-Learning
-5. **Adjust Speed**: Use the animation speed slider to control visualization speed
-6. **Visualize Path**: Click "Visualize Path" to watch the algorithm solve the maze
-7. **Reset**: Use various reset options to clear paths, positions, or start over
-
-## 🏗️ Architecture
-
-### Backend (FastAPI + PyTorch)
-```
-backend/
-├── app/
-│   ├── main.py              # FastAPI application
-│   ├── routers/
-│   │   └── maze.py         # Maze generation endpoints
-│   └── core/
-│       ├── ai_generator.py # AI-enhanced maze generation
-│       ├── classical_gen.py# Classical maze algorithms
-│       └── utils.py        # Utility functions
-└── requirements.txt
-```
-
-### Frontend (Next.js + React)
-```
-frontend/
-├── src/
-│   ├── app/
-│   │   ├── page.jsx        # Main application page
-│   │   ├── layout.tsx      # Root layout
-│   │   └── globals.css     # Global styles
-│   ├── components/         # React components
-│   ├── hooks/             # Custom React hooks
-│   ├── algorithms/        # Pathfinding algorithms
-│   └── lib/               # API utilities
-└── package.json
-```
-
-## 🧩 Algorithms
-
-### Maze Generation
-- **Recursive Backtracker**: Classical maze generation algorithm
-- **AI Enhancement**: PyTorch neural network adds bias for density, connectivity, and complexity
-
-### Pathfinding Algorithms
-- **BFS (Breadth-First Search)**: Explores level by level, guarantees shortest path
-- **DFS (Depth-First Search)**: Explores as far as possible before backtracking
-- **A***: Heuristic-based search, optimal and efficient
-- **Dijkstra**: Shortest path algorithm for weighted graphs
-- **Q-Learning**: AI reinforcement learning approach
-
-## 🎨 Design Features
-
-- **Fixed-Size Maze**: 600x600px maze container that never resizes, maintaining consistent proportions
-- **Interactive Grid**: Clickable cells with hover effects and visual feedback
-- **Neon Color Scheme**: Cyan (start), magenta (end), green (path), with glowing effects
-- **Pan/Zoom Integration**: Smooth TransformWrapper for navigation without affecting maze size
-- **Glassmorphism UI**: Frosted glass effects on control panels with backdrop blur
-- **Smooth Animations**: Framer Motion for fluid transitions and hover effects
-- **Responsive Layout**: 60% maze area, 40% control panel on large screens
-- **Custom Fonts**: Orbitron (headers), Space Grotesk (body), Poppins (UI)
-
-## 🔧 API Endpoints
-
-### `GET /api/generate-maze`
-Generates an AI-enhanced maze.
-
-**Parameters:**
-- `rows` (int, optional): Number of rows (default: 20)
-- `cols` (int, optional): Number of columns (default: 20)
-
-**Response:**
-```json
+Example response:
 {
-  "maze": [[1,1,1,1,1], [1,0,0,0,1], ...],
+  "maze": [[1,0,1,1], [1,0,0,1]],
   "rows": 20,
   "cols": 20,
   "start": [1, 1],
   "end": [18, 18]
 }
-```
 
-## 🛠️ Development
-
-### Backend Development
-```bash
-cd backend
-uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
-```
-
-### Frontend Development
-```bash
-cd frontend
-npm run dev
-```
-
-### Building for Production
-```bash
-# Frontend
-cd frontend
-npm run build
-npm start
-
-# Backend
-cd backend
-uvicorn app.main:app --host 0.0.0.0 --port 8000
-```
-
-## 📦 Dependencies
-
-### Backend
-- **FastAPI**: Modern web framework for APIs
-- **PyTorch**: Machine learning framework
-- **NumPy**: Numerical computing
-- **Uvicorn**: ASGI server
-
-### Frontend
-- **Next.js 14**: React framework with App Router
-- **Framer Motion**: Animation library for smooth transitions
-- **React Zoom Pan Pinch**: Pan/zoom functionality for maze navigation
-- **TailwindCSS**: Utility-first CSS framework with custom neon theme
-- **Lucide React**: Icon library for UI elements
-- **Axios**: HTTP client for API communication
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- **PyTorch Team** for the amazing ML framework
-- **FastAPI** for the high-performance web framework
-- **Framer Motion** for smooth animations
-- **TailwindCSS** for the utility-first CSS framework
+Notes:
+- The backend exposes endpoints that return intermediate algorithm states for animation.
+- Check backend/app/routers for additional routes and parameters (e.g., algorithm selection, seed, size).
 
 ---
 
-**Made with ❤️ for Algorithm enthusiasts and maze lovers!**
+## Usage
 
-*Experience the future of interactive maze visualization with AI-powered generation and real-time pathfinding algorithms.*
+- Open the frontend at http://localhost:3000
+- Choose a maze generation mode (classical or AI-assisted)
+- Select a pathfinding algorithm (BFS, DFS, A*, Dijkstra, Q-Learning)
+- Set start and end nodes by clicking grid cells
+- Control animation speed and play/pause the step-wise visualization
+- Regenerate or reset the maze as needed
 
-## 🎯 Key Highlights
+The frontend animates the step-by-step states the backend returns. This keeps algorithm execution deterministic and offloads CPU work to the backend.
 
-- **Fixed 600x600px maze** that never resizes or distorts
-- **Interactive start/end selection** with visual feedback
-- **Smooth pan/zoom controls** for navigation
-- **Real-time algorithm visualization** with hover effects
-- **Futuristic neon UI** with glassmorphism design
-- **Responsive layout** optimized for all screen sizes
+---
+
+## Algorithms Implemented
+
+- BFS (Breadth-First Search)
+- DFS (Depth-First Search)
+- A*
+- Dijkstra
+- Q-Learning (for comparative visualization)
+
+Maze generation:
+- Classical (deterministic generators)
+- AI-assisted generator (PyTorch logic that biases complexity/connectivity)
+
+---
+
+## Project Structure
+
+MazeQuest-AI/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── routers/
+│   │   └── core/
+│   │       ├── ai_generator.py
+│   │       ├── classical_gen.py
+│   │       └── utils.py
+│   └── requirements.txt
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── algorithms/
+│   │   ├── hooks/
+│   │   └── lib/
+│   └── package.json
+
+---
+
+## Design Notes & Trade-offs
+
+- Step-wise execution was chosen to simplify animation control and keep the UI responsive.
+- Larger grids reduce rendering smoothness; the app caps grid size to maintain consistent frame rates.
+- AI is limited to maze generation to preserve predictable pathfinding behavior.
+- Backend computation is kept lightweight and synchronous per request; streaming or WebSockets were deferred for simplicity.
+
+---
+
+## Future Improvements
+
+- Stream algorithm states using WebSockets for lower latency
+- Chunked rendering and virtualized grids to support larger mazes
+- Add tests and CI for backend and frontend
+- Improve AI maze generation controls and reproducibility (seed management)
+
+---
+
+## Contributing
+
+Contributions are welcome. Suggested workflow:
+- Fork the repository
+- Create a feature branch: git checkout -b feat/your-feature
+- Implement and test locally
+- Open a PR describing your changes
+
+Please follow code style in each part of the stack (ESLint/Prettier for the frontend and PEP8 for Python).
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Author
+
+Ishika Mohol
+
+```
+
