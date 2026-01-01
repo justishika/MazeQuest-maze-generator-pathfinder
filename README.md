@@ -50,38 +50,38 @@ Built with Next.js, FastAPI, and PyTorch, MazeQuest demonstrates how algorithmic
         +----------------------------------------------------------------+
         |                         UI Components                           |
         |        (frontend/src/components)                                |
-        |   - MazeGrid                                                     |
-        |   - ControlPanel                                                 |
-        |   - MetricsDashboard                                             |
+        |   - MazeGrid                                                    |
+        |   - ControlPanel                                                |
+        |   - MetricsDashboard                                            |
         +----------------------------------------------------------------+
                                           |
                                           v
         +--------------------------+     +--------------------------------+
         |      React Hooks         |     |     Client-side Algorithms      |
         |  (State & Animation)     |     |  (frontend/src/algorithms)      |
-        |  - useMaze               |     |  - BFS                           |
-        |  - useAlgorithm          |     |  - DFS                           |
-        |  - useAnimation          |     |  - A*                            |
-        |                          |     |  - Dijkstra                      |
-        |                          |     |  - Q-Learning                    |
+        |  - useMaze               |     |  - BFS                          |
+        |  - useAlgorithm          |     |  - DFS                          |
+        |  - useAnimation          |     |  - A*                           |
+        |                          |     |  - Dijkstra                     |
+        |                          |     |  - Q-Learning                   |
         +--------------------------+     +--------------------------------+
                                           |
                                           v
         +----------------------------------------------------------------+
-        |                         API Client                               |
-        |               (frontend/src/lib/api.js)                          |
+        |                         API Client                              |
+        |               (frontend/src/lib/api.js)                         |
         +----------------------------------------------------------------+
                                           |
                                    REST / HTTP
                                           |
                                           v
         +----------------------------------------------------------------+
-        |                         Backend Application                      |
+        |                         Backend Application                     |
         |                   (backend/app/)                                |
-        |   - main.py                                                      |
-        |   - routers/                                                     |
-        |   - core/                                                        |
-        |   - requirements.txt                                             |
+        |   - main.py                                                     |
+        |   - routers/                                                    |
+        |   - core/                                                       |
+        |   - requirements.txt                                            |
         +----------------------------------------------------------------+
                                           ^
                                           |
@@ -89,7 +89,7 @@ Built with Next.js, FastAPI, and PyTorch, MazeQuest demonstrates how algorithmic
                                           |
         +--------------------+      +---------------------+
         |     gRPC Server    | <--> |     gRPC Client     |
-        |   grpc_server.py   |      |   grpc_client.py   |
+        |   grpc_server.py   |      |   grpc_client.py    |
         +--------------------+      +---------------------+
                      ^
                      |
