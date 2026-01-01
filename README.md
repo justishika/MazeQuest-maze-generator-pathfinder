@@ -158,6 +158,7 @@ Maze generation:
 
 ## Project Structure
 
+```
 MazeQuest-AI/
 ├── backend/
 │   ├── app/
@@ -176,7 +177,7 @@ MazeQuest-AI/
 │   │   ├── hooks/
 │   │   └── lib/
 │   └── package.json
-
+```
 ---
 
 ## Design Notes & Trade-offs
