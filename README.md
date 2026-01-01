@@ -40,8 +40,65 @@ Built with Next.js, FastAPI, and PyTorch, MazeQuest demonstrates how algorithmic
 
 ## System Architecture
 
-Frontend (Next.js) ↔ HTTP APIs ↔ Backend (FastAPI)
-
+```
++------------------+            +----------------------------------+
+|  User's Browser  |   HTTP     |     Next.js Frontend (frontend)  |
+|                  | ---------> |                                  |
++------------------+            +----------------------------------+
+                                          |
+                                          v
+        +----------------------------------------------------------------+
+        |                         UI Components                           |
+        |        (frontend/src/components)                                |
+        |   - MazeGrid                                                     |
+        |   - ControlPanel                                                 |
+        |   - MetricsDashboard                                             |
+        +----------------------------------------------------------------+
+                                          |
+                                          v
+        +--------------------------+     +--------------------------------+
+        |      React Hooks         |     |     Client-side Algorithms      |
+        |  (State & Animation)     |     |  (frontend/src/algorithms)      |
+        |  - useMaze               |     |  - BFS                           |
+        |  - useAlgorithm          |     |  - DFS                           |
+        |  - useAnimation          |     |  - A*                            |
+        |                          |     |  - Dijkstra                      |
+        |                          |     |  - Q-Learning                    |
+        +--------------------------+     +--------------------------------+
+                                          |
+                                          v
+        +----------------------------------------------------------------+
+        |                         API Client                               |
+        |               (frontend/src/lib/api.js)                          |
+        +----------------------------------------------------------------+
+                                          |
+                                   REST / HTTP
+                                          |
+                                          v
+        +----------------------------------------------------------------+
+        |                         Backend Application                      |
+        |                   (backend/app/)                                |
+        |   - main.py                                                      |
+        |   - routers/                                                     |
+        |   - core/                                                        |
+        |   - requirements.txt                                             |
+        +----------------------------------------------------------------+
+                                          ^
+                                          |
+                                 Optional gRPC Interface
+                                          |
+        +--------------------+      +---------------------+
+        |     gRPC Server    | <--> |     gRPC Client     |
+        |   grpc_server.py   |      |   grpc_client.py   |
+        +--------------------+      +---------------------+
+                     ^
+                     |
+                proto definition
+                     |
+              +----------------+
+              |   maze.proto   |
+              +----------------+
+```
 - Frontend animates algorithm states using step-wise updates returned by the backend.
 - Backend generates mazes, runs pathfinding algorithms, and returns intermediate states for visualization.
 
@@ -220,5 +277,4 @@ This project is licensed under the MIT License.
 
 Ishika Mohol
 
-```
-
+---
